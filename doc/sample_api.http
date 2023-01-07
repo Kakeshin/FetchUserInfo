@@ -1,0 +1,9 @@
+@scheme = https
+@host = public-api.tracker.gg/v2/apex/standard
+@url = {{scheme}}://{{host}}
+@platform = origin
+@identifier = kakeshin
+
+
+# ユーザー情報取得
+GET {{url}}/profle/{{platform}}/{{identifier}}
