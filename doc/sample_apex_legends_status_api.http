@@ -1,8 +1,8 @@
 @api_key = 9a1f6aed938a3e1fc6580e6df8bffe94
 @url = https://api.mozambiquehe.re
-@platform = PS4
-@player_name = nInjln_x
-@uid = 367650931094463222
+@platform = 
+@player_name = 
+@uid = 
 
 #### 認証
 GET {{url}}/?auth={{api_key}}
