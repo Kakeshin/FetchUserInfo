@@ -1,0 +1,33 @@
+@scheme = https
+@host = public-api.tracker.gg/v2/apex/standard
+@url = {{scheme}}://{{host}}
+@platform = origin
+@identifier = Kakeshin
+@api_key = 9436b819-2526-40f4-b6b9-984348d80030
+
+
+#### ユーザー情報取得
+GET {{url}}/profile/{{platform}}/{{identifier}}
+TRN-Api-Key: {{api_key}}
+Accept: application/json
+Accept-Encoding: gzip
+
+#### 各レジェンドの統計取得
+GET {{url}}/profile/{{platform}}/{{identifier}}/segments/legend
+TRN-Api-Key: {{api_key}}
+Accept: application/json
+Accept-Encoding: gzip
+
+#### セッションごとのプレイヤーのマッチ履歴取得
+GET {{url}}/profile/{{platform}}/{{identifier}}/sessions
+TRN-Api-Key: {{api_key}}
+Accept: application/json
+Accept-Encoding: gzip
+
+#### プレイヤー検索
+GET {{url}}/search?platform={{platform}}&query={{identifier}}
+TRN-Api-Key: {{api_key}}
+Accept: application/json
+Accept-Encoding: gzip
+
+
