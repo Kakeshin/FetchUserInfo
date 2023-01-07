@@ -1,9 +1,9 @@
 @scheme = https
 @host = public-api.tracker.gg/v2/apex/standard
 @url = {{scheme}}://{{host}}
-@platform = origin
-@identifier = 
-@api_key = 
+@platform = psn
+@identifier = nInjln_x
+@api_key = 9436b819-2526-40f4-b6b9-984348d80030
 
 
 #### ユーザー情報取得

@@ -1,20 +1,20 @@
-@api_key = 
+@api_key = 9a1f6aed938a3e1fc6580e6df8bffe94
 @url = https://api.mozambiquehe.re
-@platform = PC
-@player_name = 
-@uid = 
+@platform = PS4
+@player_name = nInjln_x
+@uid = 367650931094463222
 
 #### 認証
 GET {{url}}/?auth={{api_key}}
 
 #### ユーザー名によるユーザー情報取得
 GET {{url}}/bridge?auth={{api_key}}&player={{player_name}}&platform={{platform}}
-Content-Type: application/json
+Content-Type: text/plain
 
 #### uidによるユーザー情報取得
 GET {{url}}/bridge?auth={{api_key}}&uid={{uid}}&platform={{platform}}
-Content-Type: application/json
+Content-Type: text/plain
 
 #### ユーザー名からuiの取得
 GET {{url}}/nametouid?auth={{api_key}}&player={{player_name}}&platform={{platform}}
-Content-Type: application/json
+Content-Type: text/plain
