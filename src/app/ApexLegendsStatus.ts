@@ -14,12 +14,15 @@ const options: AxiosRequestConfig = {
 axios(options)
     .then((result) => {
         const data = result.data;
+        const filteredBadges = data.global.badges.filter((element: any) => {
+            return element.name.includes("You're Tiering Me Apart: Ranked Season");
+        });
+
         console.log(`プレイヤー名: ${data.global.name}`);
         console.log(`UID: ${data.global.uid}`);
         console.log(`現在のランク: ${data.global.rank.rankName}${data.global.rank.rankDiv} ${data.global.rank.rankScore}`);
-        console.log(`取得バッジ`);
 
-        getMaxRank(new RankArray(data.global.badges));
+        getMaxRank(new RankArray(filteredBadges));
     })
     .catch((e: AxiosError<{ error: string }>) => {
         console.log(e.message);
@@ -41,36 +44,36 @@ function getMaxRank(badgesInfo: RankArray) {
     const maxRank = rankValues.reduce((value1: number, value2: number) => Math.max(value1, value2));
 
     switch (maxRank) {
-        case 0:
+        case 1:
             console.log('ランク経験なし');
             break;
-        case 1:
         case 2:
-            console.log('ブロンズ');
-            break;
         case 3:
+            console.log('最高ランク: ブロンズ');
+            break;
         case 4:
-            console.log('シルバー');
-            break;
         case 5:
+            console.log('最高ランク: シルバー');
+            break;
         case 6:
-            console.log('ゴールド');
-            break;
         case 7:
+            console.log('最高ランク: ゴールド');
+            break;
         case 8:
-            console.log('プラチナ');
-            break;
         case 9:
+            console.log('最高ランク: プラチナ');
+            break;
         case 10:
-            console.log('ダイヤ');
-            break;
         case 11:
-        case 12:
-            console.log('マスター');
+            console.log('最高ランク: ダイヤ');
             break;
+        case 12:
         case 13:
+            console.log('最高ランク: マスター');
+            break;
         case 14:
-            console.log('プレデター');
+        case 15:
+            console.log('最高ランク: プレデター');
             break;
         default:
             console.warn('計測不能');
