@@ -1,8 +1,8 @@
-@api_key = 
 @url = https://api.mozambiquehe.re
-@platform = 
-@player_name = 
-@uid = 
+@api_key =
+@platform =
+@player_name =
+@uid =
 
 #### 認証
 GET {{url}}/?auth={{api_key}}
