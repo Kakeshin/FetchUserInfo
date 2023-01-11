@@ -6,7 +6,7 @@ interface InputProps {
 
 const Input: React.FC<InputProps> = (props) => {
   return (
-    <div className="api-key">
+    <div>
       <label>{props.label}</label>
       <input type="text" />
     </div>

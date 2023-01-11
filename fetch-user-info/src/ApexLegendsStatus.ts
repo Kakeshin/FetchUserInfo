@@ -11,7 +11,8 @@ const options: AxiosRequestConfig = {
   method: "GET",
 };
 
-function fetchUserInfo() {
+const FetchUserInfo = () => {
+  console.log("API呼ぶよー");
   axios(options)
     .then((result) => {
       const data = result.data;
@@ -30,7 +31,7 @@ function fetchUserInfo() {
     .catch((e: AxiosError<{ error: string }>) => {
       console.log(e.message);
     });
-}
+};
 
 /* ---------------------------- */
 
@@ -87,4 +88,4 @@ function getMaxRank(badgesInfo: RankArray) {
   }
 }
 
-export default fetchUserInfo;
+export default FetchUserInfo;
