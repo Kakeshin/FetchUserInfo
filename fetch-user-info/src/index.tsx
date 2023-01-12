@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./Resources/styles/index.scss";
 import reportWebVitals from "./reportWebVitals";
-import TestPage from "./TestPage";
+import TestPage from "./ApexUserInfo";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

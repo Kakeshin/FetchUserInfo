@@ -2,7 +2,7 @@ import React from "react";
 import Input from "./Common/Form";
 import style from "./Resources/styles/testPage.module.scss";
 
-const TestPage: React.FC = () => {
+const ApexUserInfo: React.FC = () => {
   return (
     <div className={style.testPage}>
       <div className={style.wrapper}>
@@ -18,4 +18,4 @@ const TestPage: React.FC = () => {
   );
 };
 
-export default TestPage;
+export default ApexUserInfo;

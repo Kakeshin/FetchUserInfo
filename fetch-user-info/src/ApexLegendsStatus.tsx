@@ -1,12 +1,15 @@
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
-import { RankArray } from "./RankArray";
-import { Rank } from "./Rank";
+import { RankArray } from "./Entities/RankArray";
+import { Rank } from "./Entities/Rank";
 import Inputs from "./Entities/InputInterface";
 
 const url: string = "https://api.mozambiquehe.re";
 
+/**
+ *
+ * @param inputs 入力情報
+ */
 const FetchUserInfo = (inputs: Inputs) => {
-  console.log("API呼ぶよー", inputs);
   const options: AxiosRequestConfig = {
     url: `${url}/bridge?auth=${inputs.apiKey}&player=${inputs.userName}&platform=${inputs.platform}`,
     method: "GET",
@@ -25,7 +28,7 @@ const FetchUserInfo = (inputs: Inputs) => {
         `現在のランク: ${data.global.rank.rankName}${data.global.rank.rankDiv} ${data.global.rank.rankScore}`
       );
 
-      getMaxRank(new RankArray(filteredBadges));
+      GetMaxRank(new RankArray(filteredBadges));
     })
     .catch((e: AxiosError<{ error: string }>) => {
       console.log(e.message);
@@ -36,18 +39,19 @@ const FetchUserInfo = (inputs: Inputs) => {
 
 /**
  *
- * @param badgesInfo ランク情報の配列
+ * @param badgesInfo ランク情報のオブジェクト
  */
-function getMaxRank(badgesInfo: RankArray) {
+const GetMaxRank = (badgesInfo: RankArray) => {
   const data = badgesInfo.toArray();
   const rankValues: number[] = [];
   data.forEach((element: Rank) => {
     rankValues.push(element.value);
   });
 
-  const maxRank = rankValues.reduce((value1: number, value2: number) =>
-    Math.max(value1, value2)
-  );
+  // ランクバッジのvalueが最大で15のため
+  const maxRank = rankValues
+    .filter((rankValue) => rankValue < 16)
+    .reduce((value1: number, value2: number) => Math.max(value1, value2));
 
   switch (maxRank) {
     case 1:
@@ -85,6 +89,6 @@ function getMaxRank(badgesInfo: RankArray) {
       console.warn("計測不能");
       break;
   }
-}
+};
 
 export default FetchUserInfo;

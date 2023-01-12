@@ -1,8 +1,8 @@
 import "./Resources/styles/App.scss";
-import TestPage from "./TestPage";
+import ApexUserInfo from "./ApexUserInfo";
 
 function App() {
-  return <TestPage />;
+  return <ApexUserInfo />;
 }
 
 export default App;
