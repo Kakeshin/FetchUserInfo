@@ -1,18 +1,17 @@
 import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { RankArray } from "./RankArray";
 import { Rank } from "./Rank";
+import Inputs from "./Entities/InputInterface";
 
 const url: string = "https://api.mozambiquehe.re";
-const api_key: string = "";
-const platform: string = "";
-const player_name: string = "";
-const options: AxiosRequestConfig = {
-  url: `${url}/bridge?auth=${api_key}&player=${player_name}&platform=${platform}`,
-  method: "GET",
-};
 
-const FetchUserInfo = () => {
-  console.log("API呼ぶよー");
+const FetchUserInfo = (inputs: Inputs) => {
+  console.log("API呼ぶよー", inputs);
+  const options: AxiosRequestConfig = {
+    url: `${url}/bridge?auth=${inputs.apiKey}&player=${inputs.userName}&platform=${inputs.platform}`,
+    method: "GET",
+  };
+
   axios(options)
     .then((result) => {
       const data = result.data;
