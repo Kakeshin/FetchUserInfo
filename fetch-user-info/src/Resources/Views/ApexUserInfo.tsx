@@ -1,6 +1,6 @@
 import React from "react";
-import Input from "./Common/Form";
-import style from "./Resources/styles/testPage.module.scss";
+import Form from "../../Common/Form";
+import style from "../styles/testPage.module.scss";
 
 const ApexUserInfo: React.FC = () => {
   return (
@@ -10,7 +10,7 @@ const ApexUserInfo: React.FC = () => {
         <div className={style.container}>
           <h2>必須パラメータ</h2>
           <div className={style.apiItems}>
-            <Input />
+            <Form />
           </div>
         </div>
       </div>

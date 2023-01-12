@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { RankArray } from "./Entities/RankArray";
 import { Rank } from "./Entities/Rank";
 import Inputs from "./Entities/InputInterface";
+import OutputInterface from "./Entities/OutputInterface";
 
 const url: string = "https://api.mozambiquehe.re";
 
@@ -15,24 +16,21 @@ const FetchUserInfo = (inputs: Inputs) => {
     method: "GET",
   };
 
-  axios(options)
-    .then((result) => {
-      const data = result.data;
-      const filteredBadges = data.global.badges.filter((element: any) => {
-        return element.name.includes("You're Tiering Me Apart: Ranked Season");
-      });
-
-      console.log(`プレイヤー名: ${data.global.name}`);
-      console.log(`UID: ${data.global.uid}`);
-      console.log(
-        `現在のランク: ${data.global.rank.rankName}${data.global.rank.rankDiv} ${data.global.rank.rankScore}`
-      );
-
-      GetMaxRank(new RankArray(filteredBadges));
-    })
-    .catch((e: AxiosError<{ error: string }>) => {
-      console.log(e.message);
+  return axios(options).then((result) => {
+    const data = result.data;
+    const filteredBadges = data.global.badges.filter((element: any) => {
+      return element.name.includes("You're Tiering Me Apart: Ranked Season");
     });
+
+    const output: OutputInterface = {
+      userName: data.global.name,
+      uid: data.global.uid,
+      nowRank: `${data.global.rank.rankName}${data.global.rank.rankDiv} ${data.global.rank.rankScore}`,
+      maxRank: GetMaxRank(new RankArray(filteredBadges)),
+    };
+
+    return output;
+  });
 };
 
 /* ---------------------------- */
@@ -55,39 +53,30 @@ const GetMaxRank = (badgesInfo: RankArray) => {
 
   switch (maxRank) {
     case 1:
-      console.log("ランク経験なし");
-      break;
+      return "ランク経験なし";
     case 2:
     case 3:
-      console.log("最高ランク: ブロンズ");
-      break;
+      return "ブロンズ";
     case 4:
     case 5:
-      console.log("最高ランク: シルバー");
-      break;
+      return "シルバー";
     case 6:
     case 7:
-      console.log("最高ランク: ゴールド");
-      break;
+      return "ゴールド";
     case 8:
     case 9:
-      console.log("最高ランク: プラチナ");
-      break;
+      return "プラチナ";
     case 10:
     case 11:
-      console.log("最高ランク: ダイヤ");
-      break;
+      return "ダイヤ";
     case 12:
     case 13:
-      console.log("最高ランク: マスター");
-      break;
+      return "マスター";
     case 14:
     case 15:
-      console.log("最高ランク: プレデター");
-      break;
+      return "プレデター";
     default:
-      console.warn("計測不能");
-      break;
+      return "計測不能";
   }
 };
 

@@ -1,7 +1,7 @@
-interface Inputs {
+interface InputInterface {
   apiKey: string;
   userName: string;
   platform: string;
 }
 
-export default Inputs;
+export default InputInterface;

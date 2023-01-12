@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import Inputs from "../Entities/InputInterface";
+import InputInterface from "../Entities/InputInterface";
 import getUserInfo from "../ApexLegendsStatus";
+import OutputInterface from "../Entities/OutputInterface";
 
 interface InputProps {
   apiKey: string;
@@ -17,28 +18,37 @@ const Input: React.FC = () => {
     formState: { errors },
   } = useForm<InputProps>();
 
+  const [result, setResult] = useState<OutputInterface>({
+    userName: "",
+    uid: "",
+    nowRank: "",
+    maxRank: "",
+  });
   const onSubmit: SubmitHandler<InputProps> = (data) => {
-    const inputs: Inputs = {
+    const inputs: InputInterface = {
       apiKey: data.apiKey,
       userName: data.userName,
       platform: data.platform,
     };
-    getUserInfo(inputs);
+    getUserInfo(inputs).then((value: OutputInterface) => {
+      setResult(value);
+      console.log(value);
+    });
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label>API Key</label>
+          <label>API Key </label>
           <input {...register("apiKey", { required: true })} />
         </div>
         <div>
-          <label>Platform</label>
+          <label>Platform </label>
           <input {...register("platform", { required: true })} />
         </div>
         <div>
-          <label>User Name</label>
+          <label>User Name </label>
           <input {...register("userName", { required: true })} />
         </div>
         {errors.required && (
@@ -46,6 +56,23 @@ const Input: React.FC = () => {
         )}
         <input type="submit" />
       </form>
+      <div>
+        <h2>結果</h2>
+        <div>
+          <div>
+            <label>プレイヤー名: {result.userName}</label>
+          </div>
+          <div>
+            <label>UID: {result.uid}</label>
+          </div>
+          <div>
+            <label>現在のランク: {result.nowRank}</label>
+          </div>
+          <div>
+            <label>最高ランク: {result.maxRank}</label>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
