@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import InputInterface from "../Entities/InputInterface";
-import getUserInfo from "../ApexLegendsStatus";
+import userInfoStatusAction from "../Http/Action/UserInfoStatusAction";
 import OutputInterface from "../Entities/OutputInterface";
 
 interface InputProps {
@@ -30,9 +30,8 @@ const Input: React.FC = () => {
       userName: data.userName,
       platform: data.platform,
     };
-    getUserInfo(inputs).then((value: OutputInterface) => {
+    userInfoStatusAction(inputs).then((value: OutputInterface) => {
       setResult(value);
-      console.log(value);
     });
   };
 
