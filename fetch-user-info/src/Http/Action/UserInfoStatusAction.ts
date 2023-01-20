@@ -26,7 +26,6 @@ const userInfoStatusAction = (inputs: Inputs): Promise<OutputInterface> => {
       nowRank: `${data.global.rank.rankName}${data.global.rank.rankDiv} ${data.global.rank.rankScore}`,
       maxRank: rankValueToString(getMaxRank(filteredBadges ?? [])),
     };
-
     return output;
   });
 };
